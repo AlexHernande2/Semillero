@@ -1,6 +1,6 @@
 import flet as ft
 import datetime
-from inicio import contInicial
+from nn.inicio import contInicial
 
 
 def datosUsuario(page: ft.Page):
@@ -12,7 +12,7 @@ def datosUsuario(page: ft.Page):
         "Registro",
         size=30,
         text_align=ft.TextAlign.CENTER
-        
+ 
     ) 
     
     def irpaginaIni(evento):

@@ -1,11 +1,15 @@
 import flet as ft
-from datosIni import datosUsuario
-
+# from datosIni import datosUsuario
+from datosUsuario import datosUsuario
+from user_data import init_data
 
 def main(page: ft.Page):
+    init_data()
     page.title = "Pagina_Bienvenido"
     page.padding = 20  # Espaciado alrededor del contenido
-    
+    page.theme_mode = ft.ThemeMode.LIGHT
+    page.bgcolor = ft.colors.WHITE
+
     # Función para navegar a la segunda página
     def ir_a_pagina_inicio(evento):
         datosUsuario(page)  # Llama a la función para cargar la segunda página
@@ -15,9 +19,10 @@ def main(page: ft.Page):
                      text_align=ft.TextAlign.CENTER, 
                      width=page.width              
     )
+    
     # Imagen principal
     imagenPrin = ft.Image(
-        src="https://cdn.pixabay.com/photo/2017/05/26/16/08/glass-2346358_1280.png",  # Imagen de ejemplo
+        src="https://static.vecteezy.com/system/resources/previews/024/553/630/non_2x/colorful-owl-pop-art-style-owl-sticker-pastel-cute-colors-ai-generated-png.png",  # Imagen de ejemplo
         fit="contain",  # La imagen se ajusta al contenedor sin deformarse
         width=300,  # Ancho máximo para la imagen
         height=300  
@@ -61,5 +66,4 @@ def main(page: ft.Page):
             alignment=ft.alignment.center
         )
     )
-
-ft.app(main, view=ft.WEB_BROWSER, host="0.0.0.0")
+ft.app(main, view=ft.WEB_BROWSER)

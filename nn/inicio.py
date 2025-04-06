@@ -1,7 +1,7 @@
 import flet as ft
 import threading
 import time
-from chbot import chatBOT
+from nn.chbot import chatBOT
 
 def contInicial(page: ft.Page):
     # Borra el contenido actual de la página

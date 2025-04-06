@@ -135,13 +135,10 @@ def chatBOT(page: ft.Page):
                 return "aun nada"              
           case "_.":
                 return "Opción invalida"
-            
-    
+
     
     # Botón de enviar
     boton_enviar = ft.ElevatedButton("Enviar", on_click=enviar_mensaje)
-    
-
 
     # Construcción de la interfaz
     page.views.append(
