@@ -1,12 +1,15 @@
 import flet as ft
 from user_data import guardar_usuario
 from alertas import configurar_snackbar
+from appBar import MiAppBar
 
 def formulario_usuario(page, ced ):
     print("Entró a formulario_usuario con cédula:", ced)
 
     page.clean()
     page.title = "IRegistro de Usuario"
+
+    page.appbar = MiAppBar(page,"Registro de Usuario").obtener()
  
 
     titulo = ft.Text("REGISTRO USUARIO", 

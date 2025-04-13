@@ -40,7 +40,7 @@ def contInicial(page: ft.Page):
         },
         {
             "nombre": "Catedral Basílica Metropolitana Santiago de Tunja",
-            "imagen": "https://lh3.googleusercontent.com/p/AF1QipOUU0qZPR-YJUrWZFV_P9qRgKc-7JxhA9VKlD6Y=w408-h544-k-no",
+            "imagen": "https://apartamento-frente-al-centro-comercial-viva.hoteles-en-boyaca.com/data/Images/OriginalPhoto/14771/1477160/1477160059/image-tunja-4.JPEG",
             "maps_url": "https://maps.app.goo.gl/WDr6vQfc1q23KZwu7"
         }
     ]
@@ -58,9 +58,9 @@ def contInicial(page: ft.Page):
     # Imagen principal
     imagen_mostrada = ft.Image(
         src=sitios_tunja[indice_actual.current]["imagen"],  # Usar .current en lugar de .value
-        fit="contain",
         width=300,
-        height=300
+        height=300,
+        fit=ft.ImageFit.COVER,  # Ajuste de imagen
     )
     
     # Función para cambiar de imagen
