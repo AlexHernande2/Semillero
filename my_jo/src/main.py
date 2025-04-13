@@ -1,5 +1,4 @@
 import flet as ft
-# from datosIni import datosUsuario
 from datosUsuario import datosUsuario
 from user_data import init_data
 
@@ -11,7 +10,7 @@ def main(page: ft.Page):
     page.bgcolor = ft.colors.WHITE
 
     # Función para navegar a la segunda página
-    def ir_a_pagina_inicio(evento):
+    def ir_a_pagina_datUsuario(evento):
         datosUsuario(page)  # Llama a la función para cargar la segunda página
       
     titulo = ft.Text("Cultura de Tunja",
@@ -30,7 +29,7 @@ def main(page: ft.Page):
     # Botón
     boton_iniciar = ft.ElevatedButton(
         "Bienvenido",
-        on_click=ir_a_pagina_inicio,
+        on_click=ir_a_pagina_datUsuario,
         style=ft.ButtonStyle(
             padding=ft.padding.symmetric(horizontal=20, vertical=10)
         ),

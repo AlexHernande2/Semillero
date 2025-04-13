@@ -2,6 +2,7 @@ import flet as ft
 from user_data import usuario_existe
 from formulario import formulario_usuario
 from alertas import configurar_snackbar #  POO
+from inicio import contInicial
 
 def datosUsuario(page: ft.Page):
     page.clean()
@@ -10,6 +11,9 @@ def datosUsuario(page: ft.Page):
     titulo = ft.Text(
         "Iniciar Sesion", size=30
     )
+       # Función para navegar a la segunda página
+    def ir_a_pagina_Inicio(evento):
+        contInicial(page)  # Llama a la función para cargar la segunda página
 
     #POO
     mostrar_snack, snack = configurar_snackbar(page)
@@ -32,7 +36,8 @@ def datosUsuario(page: ft.Page):
         page.session.set("cedula", ced)
 
         if usuario_existe(ced):
-            print("Hola acá es la secuencia para pasarlo a la otra pagina")
+            ir_a_pagina_Inicio(None)
+            print("hola")
         else:
             formulario_usuario(page, ced)
 

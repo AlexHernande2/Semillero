@@ -9,7 +9,7 @@ def formulario_usuario(page, ced ):
     page.title = "IRegistro de Usuario"
  
 
-    titulo = ft.Text("REGISTRO USUARIO",
+    titulo = ft.Text("REGISTRO USUARIO", 
                      size=30,
                      text_align=ft.TextAlign.CENTER, 
                      width=page.width              
@@ -17,28 +17,7 @@ def formulario_usuario(page, ced ):
     #Se utiliza POO puesw con el fin de no repetir código
     mostrar_snack, snack = configurar_snackbar(page)
 
-
-    def guardar(evento):
-
-        if not all ([
-             edad.value, sexo.value, intereses.value, nivelEstudio.value,
-             tiempoDisponible.value, presupuesto.value, transporte.value
-        ]):
-            mostrar_snack("Debe ingresar todos los campos")
-            return 
-
-        data = {
-            "edad": int(edad.value),
-            "sexo": sexo.value,
-            "intereses": intereses.value.split(","),
-            "medio_transporte": transporte.value,
-            "nivel de estudio": nivelEstudio.value,
-            "tiempo disponible": tiempoDisponible.value,
-            "presupuesto": presupuesto.value
-        }
-        guardar_usuario(ced, data)
-     
-
+       #Campos para la recolección de datos
     cedula = ft.Text(f"Cédula: {ced}", size=16)
 
     edad = ft.TextField(label="Edad")
@@ -82,6 +61,47 @@ def formulario_usuario(page, ced ):
             ft.dropdown.Option("Cicla")
         ]
     )
+
+    def guardar(evento):
+
+        if not all([
+            edad.value, sexo.value, intereses.value, nivelEstudio.value,
+            tiempoDisponible.value, presupuesto.value, transporte.value
+        ]):
+            mostrar_snack("Debe ingresar todos los campos")
+            return
+
+        try:
+            edad_int = int(edad.value)
+            if not 16 <= edad_int <= 70:
+                mostrar_snack("Edad fuera de rango. Debes tener entre 16 y 70 años.")
+                return
+        except ValueError:
+            mostrar_snack("Edad inválida. Ingresa un número.")
+            return
+
+        try:
+            tiempo_int = int(tiempoDisponible.value)
+            if not 1 <= tiempo_int <= 15:
+                mostrar_snack("Tiempo disponible fuera de rango. Debe ser entre 1 y 15 horas.")
+                return
+        except ValueError:
+            mostrar_snack("Tiempo disponible inválido. Ingresa un número.")
+            return
+
+        data = {
+            "edad": edad_int,
+            "sexo": sexo.value,
+            "intereses": intereses.value.split(","),
+            "medio_transporte": transporte.value,
+            "nivel de estudio": nivelEstudio.value,
+            "tiempo disponible": tiempo_int,
+            "presupuesto": presupuesto.value
+        }
+
+        guardar_usuario(ced, data)
+     
+ 
 
     boton_guardar = ft.ElevatedButton(
         "Guardar",

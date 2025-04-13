@@ -1,6 +1,6 @@
 import flet as ft
 import datetime
-from nn.inicio import contInicial
+from my_jo.src.inicio import contInicial
 
 
 def datosUsuario(page: ft.Page):
