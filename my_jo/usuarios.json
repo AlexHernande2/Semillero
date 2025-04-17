@@ -20,5 +20,16 @@
         "nivel de estudio": "Secundaria",
         "tiempo disponible": 1,
         "presupuesto": "Bajo"
+    },
+    "33375210": {
+        "edad": 25,
+        "sexo": "M",
+        "intereses": [
+            "Plaza de Bol\u00edvar"
+        ],
+        "medio_transporte": "Cicla",
+        "nivel de estudio": "Pregrado",
+        "tiempo disponible": 2,
+        "presupuesto": "Medio"
     }
 }

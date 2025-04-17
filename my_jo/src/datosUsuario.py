@@ -9,7 +9,7 @@ def datosUsuario(page: ft.Page):
     page.title = "IngresoUsuario"
 
     titulo = ft.Text(
-        "Iniciar Sesion", size=30
+        "Iniciar Sesiofn", size=30
     )
        # Función para navegar a la segunda página
     def ir_a_pagina_Inicio(evento):
