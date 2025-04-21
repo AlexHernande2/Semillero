@@ -5,9 +5,8 @@ from alertas import configurar_snackbar #  POO
 from inicio import contInicial
 
 def datosUsuario(page: ft.Page):
-    page.clean()
+    
     page.title = "IngresoUsuario"
-
     titulo = ft.Text(
         "Iniciar Sesiofn", size=30
     )
@@ -36,10 +35,10 @@ def datosUsuario(page: ft.Page):
         page.session.set("cedula", ced)
 
         if usuario_existe(ced):
-            ir_a_pagina_Inicio(None)
+            page.go("/inicio")
             print("hola")
         else:
-            formulario_usuario(page, ced)
+            page.go(f"/formulario_usuario?ced={ced}")
 
     campo_cedula = ft.TextField(     
         label="Ingresa tu cédula", 
@@ -50,16 +49,31 @@ def datosUsuario(page: ft.Page):
     )
     boton_verificar = ft.ElevatedButton("Ingresar", on_click=verificar)
 
-    layout = ft.Column(
-        [
-            titulo,
-            campo_cedula,
-            boton_verificar
-        ],
-        alignment=ft.MainAxisAlignment.CENTER,
-        horizontal_alignment=ft.CrossAxisAlignment.CENTER
-    )
+    # layout = ft.Column(
+    #     [
+    #         titulo,
+    #         campo_cedula,
+    #         boton_verificar
+    #     ],
+    #     alignment=ft.MainAxisAlignment.CENTER,
+    #     horizontal_alignment=ft.CrossAxisAlignment.CENTER
+    # )
 
-    # Agregar los controles, incluyendo el SnackBar
-    page.add(layout, snack)
-    page.update()
+    # # Agregar los controles, incluyendo el SnackBar
+    # page.add(layout, snack)
+    # page.update()
+    return ft.View(
+        "/datos_usuario",
+        controls=[
+            ft.Column(
+                [
+                    titulo,
+                    campo_cedula,
+                    boton_verificar,
+                    snack  
+                ],
+                alignment=ft.MainAxisAlignment.CENTER,
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER
+            )
+        ]
+    )

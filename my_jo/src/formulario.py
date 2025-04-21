@@ -6,9 +6,7 @@ from appBar import MiAppBar
 def formulario_usuario(page, ced ):
     print("Entró a formulario_usuario con cédula:", ced)
 
-    page.clean()
-    page.title = "IRegistro de Usuario"
-
+    page.title = "Registro de Usuario"
     page.appbar = MiAppBar(page,"Registro de Usuario").obtener()
  
 
@@ -65,6 +63,9 @@ def formulario_usuario(page, ced ):
         ]
     )
 
+     # Configurar snackbar
+    mostrar_snack, snack = configurar_snackbar(page)
+
     def guardar(evento):
 
         if not all([
@@ -103,6 +104,7 @@ def formulario_usuario(page, ced ):
         }
 
         guardar_usuario(ced, data)
+        page.go("/inicio")  
      
  
 
@@ -114,24 +116,29 @@ def formulario_usuario(page, ced ):
         ),
     )    
     
-    page.add(
-        ft.Column(
-            [
-                titulo,
-                cedula,
-                edad,
-                sexo, 
-                intereses,
-                nivelEstudio,
-                tiempoDisponible,
-                presupuesto,
-                transporte,
-                boton_guardar,
-                snack
-            ]
-        )
+  # Retornar la vista completa
+    return ft.View(
+        f"/formulario_usuario?ced={ced}",
+        controls=[
+            ft.Column(
+                controls=[
+                    titulo,
+                    cedula,
+                    edad,
+                    sexo,
+                    intereses,
+                    nivelEstudio,
+                    tiempoDisponible,
+                    presupuesto,
+                    transporte,
+                    boton_guardar,
+                    snack  
+                ],
+                spacing=20,
+                scroll=ft.ScrollMode.AUTO,
+                expand=True
+            )
+        ]
     )
 
-    page.update()
- 
 

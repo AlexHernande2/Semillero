@@ -1,6 +1,7 @@
 import flet as ft
 import threading
 import time
+from appBar import MiAppBar
 # from chbot import chatBOT
 
 def contInicial(page: ft.Page):
@@ -35,7 +36,7 @@ def contInicial(page: ft.Page):
         },
         {
             "nombre": "Puente de Boyacá",
-            "imagen": "https://lh3.googleusercontent.com/gps-cs-s/AB5caB-kBx9RQOOB1Au7ITurj0pBla4eJ3u5MY36272jZXT2s_sStJmo_EzK692hAfOhlx9XWCHikzVrxaJTy2JevXxeaR7805c68jlaewwpUbADsa7pWUNTWBIB3nfrQE80acy3ILBt=w243-h174-n-k-no-nu",
+            "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVOjL3yi2PDIWACuL_kKsR6e78GCqQsTtsGw&s",
             "maps_url": "https://maps.app.goo.gl/GF12wJp3pgXAfBQj9"
         },
         {
