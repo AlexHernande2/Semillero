@@ -13,4 +13,6 @@ def main(page: ft.Page):
     Route(page)
     page.go('/') 
 
-ft.app(main, view=ft.WEB_BROWSER)    
+ft.app(main, view=ft.WEB_BROWSER)
+
+#     

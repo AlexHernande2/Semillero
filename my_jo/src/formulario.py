@@ -11,15 +11,11 @@ def formulario_usuario(page, ced ):
     appbar = MiAppBar(
         page, titulo="REGISTRO USUARIO",
         bgcolor="#CC2B52",
-        actions=[],
-                           
+        actions=[],        
         titulo_size=28,                              # tamaño de fuente
         titulo_weight=ft.FontWeight.BOLD,               #negrilla
         mostrar_volver=True 
     ).obtener()
-
-
-
 
     #Se utiliza POO puesw con el fin de no repetir código
     mostrar_snack, snack = configurar_snackbar(page)
@@ -34,18 +30,20 @@ def formulario_usuario(page, ced ):
 
     #Campos para la recolección de datos
     cedula = ft.Text(f"Cédula: {ced}",expand=True, size=16)
-    edad = ft.TextField(label="Edad",expand=True)
+    edad = ft.TextField(label="Edad", expand=True)
     sexo = ft.Dropdown(
         label="Sexo",
         options=[ft.dropdown.Option("M"), ft.dropdown.Option("F")],
         expand=True,
-       
+        width=float("inf")
     )
     
     tiempoDisponible = ft.TextField(
         label="Tiempo disponible en horas",
         keyboard_type=ft.KeyboardType.NUMBER,
-        hint_text="Entre 1 y 8"
+        hint_text="Entre 1 y 8",
+        expand=True,
+        width=float("inf")
     )
 
     intereses = ft.Dropdown(
@@ -53,27 +51,17 @@ def formulario_usuario(page, ced ):
             [
                 ft.dropdown.Option(k) 
                 for k in opciones_sub.keys()
-            ]
+            ],
+            expand=True,
+            width=float("inf")
         )
     
     subInteres = ft.Dropdown(
         label="SubInteres", 
-        options=[]
+        options=[],
+        expand=True,
+        width=float("inf")
     )
-
-
-    presupuesto= ft.Dropdown(label="Presupuesto", options=[ft.dropdown.Option("Bajo"), ft.dropdown.Option("Medio"), ft.dropdown.Option("Alto")])
-    
-    transporte = ft.Dropdown (
-        label= "Medio de Transporte", options=
-        [
-            ft.dropdown.Option("A pie"), 
-            ft.dropdown.Option("Vehiculo propio"), 
-            ft.dropdown.Option("Transporte publico"),
-            ft.dropdown.Option("Cicla")
-        ]
-    )
-
 
     def on_interes_cambiado(e):
         sel = e.control.value
@@ -92,7 +80,7 @@ def formulario_usuario(page, ced ):
 
         if not all([
             edad.value, sexo.value, intereses.value, subInteres.value,
-            tiempoDisponible.value, presupuesto.value, transporte.value
+            tiempoDisponible.value
         ]):
             mostrar_snack("Debe ingresar todos los campos")
             return
@@ -116,19 +104,17 @@ def formulario_usuario(page, ced ):
             return
 
         data = {
-            "edad": edad_int,
-            "sexo": sexo.value,
-            "intereses": intereses.value.split(","),
-            "medio_transporte": transporte.value,
-            "nivel de estudio": subInteres.value,
-            "tiempo disponible": tiempo_int,
-            "presupuesto": presupuesto.value
+            "Edad": edad_int,
+            "Sexo": sexo.value,
+            "Tiempo disponible": tiempo_int,
+            "Interes": intereses.value,
+            "subInteres": subInteres.value,
+            
         }
 
         guardar_usuario(ced, data)
         page.go("/inicio")  
      
- 
 
     boton_guardar = ft.ElevatedButton(
         "Guardar",
@@ -158,24 +144,42 @@ def formulario_usuario(page, ced ):
             controls=[
                 cedula,
                 edad,
-                sexo,
-                intereses,
-                subInteres
-            ]
+               ft.Container(  # Envuelve el Dropdown de sexo en un Container
+                    content=sexo,
+                    expand=True  # Fuerza al Container a expandirse
+                ),
+                ft.Container(
+                    content=tiempoDisponible,
+                    expand=True
+                ),
+                ft.Container(
+                    content=intereses,
+                    expand=True
+                ),
+                ft.Container(
+                    content=subInteres,
+                    expand=True
+                ),
+                boton_guardar,
+                snack
+            ],
+            horizontal_alignment=ft.CrossAxisAlignment.STRETCH,
+           
         )
 
     )
-
-
 
     return ft.View(
         f"/formulario_usuario?ced={ced}",
         appbar=appbar,
         controls=[
             ft.Container(
-                content= conPrincipal
+                content= conPrincipal,
+                # expand=True
             )
-        ]
+        ],
+        vertical_alignment=ft.MainAxisAlignment.CENTER,  # Centra verticalmente en la View
+        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
     )
 
 

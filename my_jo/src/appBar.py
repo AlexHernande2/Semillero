@@ -1,4 +1,5 @@
 import flet as ft
+from router import Route
 
 class MiAppBar:
     def __init__(
@@ -20,6 +21,7 @@ class MiAppBar:
             icon_color=ft.colors.WHITE,
             on_click=self.volver_atras
         ) if mostrar_volver else None
+        
 
         self.app_bar = ft.AppBar(
             title=ft.Text(
@@ -36,9 +38,8 @@ class MiAppBar:
         )
 
     def volver_atras(self, e):
-        self.page.go(-1)  # vuelve a la vista anterior en el historial
+        self.page.view_pop() 
 
-        
     def volver_inicio(self, e):
         # tu lógica de “volver al inicio”
         from inicio import contInicial

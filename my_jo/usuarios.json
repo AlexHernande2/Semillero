@@ -31,5 +31,12 @@
         "nivel de estudio": "Pregrado",
         "tiempo disponible": 2,
         "presupuesto": "Medio"
+    },
+    "33376548": {
+        "Edad": 33,
+        "Sexo": "M",
+        "Tiempo disponible": 2,
+        "Interes": "Comida",
+        "subInteres": "Street Food"
     }
 }
