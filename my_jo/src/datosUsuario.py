@@ -1,18 +1,16 @@
 import flet as ft
 from user_data import usuario_existe
-from formulario import formulario_usuario
+from appBar import MiAppBar
 from alertas import configurar_snackbar #  POO
-from inicio import contInicial
+
 
 def datosUsuario(page: ft.Page):
     
     page.title = "IngresoUsuario"
-    titulo = ft.Text(
-        "Iniciar Sesiofn", size=30
-    )
-       # Función para navegar a la segunda página
-    def ir_a_pagina_Inicio(evento):
-        contInicial(page)  # Llama a la función para cargar la segunda página
+    # titulo = ft.Text(
+    #     "Iniciar Sesion", size=30
+    # )
+    appbar = MiAppBar(page, titulo="Iniciar Sesion", bgcolor="#7AE2CF",actions=[]).obtener()
 
     #POO
     mostrar_snack, snack = configurar_snackbar(page)
@@ -49,31 +47,54 @@ def datosUsuario(page: ft.Page):
     )
     boton_verificar = ft.ElevatedButton("Ingresar", on_click=verificar)
 
-    # layout = ft.Column(
-    #     [
-    #         titulo,
-    #         campo_cedula,
-    #         boton_verificar
-    #     ],
-    #     alignment=ft.MainAxisAlignment.CENTER,
-    #     horizontal_alignment=ft.CrossAxisAlignment.CENTER
-    # )
-
-    # # Agregar los controles, incluyendo el SnackBar
-    # page.add(layout, snack)
-    # page.update()
+    logoSesión = ft.Image(
+        src="https://static.vecteezy.com/system/resources/previews/024/553/630/non_2x/colorful-owl-pop-art-style-owl-sticker-pastel-cute-colors-ai-generated-png.png",
+        fit="contain",
+        width=300
+        )
+    
     return ft.View(
         "/datos_usuario",
+        appbar=appbar,
         controls=[
-            ft.Column(
-                [
-                    titulo,
-                    campo_cedula,
-                    boton_verificar,
-                    snack  
-                ],
-                alignment=ft.MainAxisAlignment.CENTER,
-                horizontal_alignment=ft.CrossAxisAlignment.CENTER
+            ft.Container(
+                width=350,
+                height=400,
+                padding=20,
+                border_radius=10,
+                bgcolor= ft.colors.SURFACE_VARIANT,
+                alignment= ft.alignment.center,
+                content=ft.Column(
+                    controls=[
+                        ft.Row(
+                            controls=[
+                                logoSesión
+                            ]
+                        ),
+                     
+                        ft.Row(
+                            controls=[
+                                campo_cedula
+                            ]
+                        ),
+                        ft.Row(
+                            controls=[
+                                boton_verificar
+                            ]
+                        ),
+
+                    ], expand= True, horizontal_alignment= ft.CrossAxisAlignment.CENTER
+                )
             )
+            # ft.Column(
+            #     [
+            #         titulo,
+            #         campo_cedula,
+            #         boton_verificar,
+            #         snack  
+            #     ],
+            #     alignment=ft.MainAxisAlignment.CENTER,
+            #     horizontal_alignment=ft.CrossAxisAlignment.CENTER
+            # )
         ]
     )

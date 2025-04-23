@@ -22,6 +22,7 @@ class Route:
         
         elif self.page.route == "/datos_usuario":
             self.page.views.append(datosUsuario(self.page))
+            self.page.update()
         
         elif self.page.route == "/inicio":
             self.page.views.append(contInicial(self.page))
