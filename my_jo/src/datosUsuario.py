@@ -40,52 +40,49 @@ def datosUsuario(page: ft.Page):
 
     campo_cedula = ft.TextField(     
         label="Ingresa tu cédula", 
-        width=300,
+        expand=True, #Para que se adapte al tamaño de la pantalla
         keyboard_type=ft.KeyboardType.NUMBER, #Muestra el teclado númerico
         input_filter= ft.InputFilter(allow=True, regex_string=r"\d*") #para solo numeros
                                 
     )
-    boton_verificar = ft.ElevatedButton("Ingresar", on_click=verificar)
+    boton_verificar = ft.ElevatedButton(
+        "Ingresar",
+          on_click=verificar,
+          expand=True,
+          style = ft.ButtonStyle(
+              padding=25
+          )
 
-    logoSesión = ft.Image(
+    )
+
+    logoSesion = ft.Image(
         src="https://static.vecteezy.com/system/resources/previews/024/553/630/non_2x/colorful-owl-pop-art-style-owl-sticker-pastel-cute-colors-ai-generated-png.png",
         fit="contain",
-        width=300
+        expand=True
         )
     
+    conPrincipal = ft.Container(
+        padding=20,
+        border_radius=10,
+        bgcolor= ft.colors.SURFACE_VARIANT,
+        content=ft.Column(
+            controls=[
+                logoSesion,
+                campo_cedula,
+                boton_verificar,
+                snack,
+            ],
+            alignment=ft.MainAxisAlignment.CENTER, 
+            # Centramos cada hijo en el eje X
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+            spacing=20
+        )
+    )
     return ft.View(
         "/datos_usuario",
         appbar=appbar,
-        controls=[
-            ft.Container(
-                width=350,
-                height=400,
-                padding=20,
-                border_radius=10,
-                bgcolor= ft.colors.SURFACE_VARIANT,
-                alignment= ft.alignment.center,
-                content=ft.Column(
-                    controls=[
-                        ft.Row(
-                            controls=[
-                                logoSesión
-                            ]
-                        ),
-                     
-                        ft.Row(
-                            controls=[
-                                campo_cedula
-                            ]
-                        ),
-                        ft.Row(
-                            controls=[
-                                boton_verificar
-                            ]
-                        ),
-
-                    ], expand= True, horizontal_alignment= ft.CrossAxisAlignment.CENTER
-                )
-            )
+        controls=[conPrincipal]
+      
             # ft.Column(
             #     [
             #         titulo,
@@ -96,5 +93,5 @@ def datosUsuario(page: ft.Page):
             #     alignment=ft.MainAxisAlignment.CENTER,
             #     horizontal_alignment=ft.CrossAxisAlignment.CENTER
             # )
-        ]
+        
     )
