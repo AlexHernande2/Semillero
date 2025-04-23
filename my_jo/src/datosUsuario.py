@@ -7,10 +7,8 @@ from alertas import configurar_snackbar #  POO
 def datosUsuario(page: ft.Page):
     
     page.title = "IngresoUsuario"
-    # titulo = ft.Text(
-    #     "Iniciar Sesion", size=30
-    # )
-    appbar = MiAppBar(page, titulo="Iniciar Sesion", bgcolor="#7AE2CF",actions=[]).obtener()
+
+    appbar = MiAppBar(page, titulo="Iniciar Sesion", actions=[]).obtener()
 
     #POO
     mostrar_snack, snack = configurar_snackbar(page)
@@ -46,13 +44,13 @@ def datosUsuario(page: ft.Page):
                                 
     )
     boton_verificar = ft.ElevatedButton(
-        "Ingresar",
+          "Ingresar",
           on_click=verificar,
-          expand=True,
-          style = ft.ButtonStyle(
-              padding=25
-          )
-
+          bgcolor="#CC2B52",      # color de fondo
+          color="white",          # color del texto
+          width=200,              # ancho fijo en píxeles
+          height=50               # (opcional) alto fijo
+        
     )
 
     logoSesion = ft.Image(
@@ -64,7 +62,18 @@ def datosUsuario(page: ft.Page):
     conPrincipal = ft.Container(
         padding=20,
         border_radius=10,
-        bgcolor= ft.colors.SURFACE_VARIANT,
+        
+          gradient= ft.LinearGradient(
+            rotation=0.5,
+            begin=ft.alignment.top_left,
+            end=ft.alignment.bottom_right,  
+            colors=[
+                "#c8b4f0",  # lila claro
+                "#f0c8f0",  # rosa pastel
+                "#c8f0ff",  # celeste pastel
+            ]
+        ),
+        width=400,
         content=ft.Column(
             controls=[
                 logoSesion,
@@ -81,17 +90,15 @@ def datosUsuario(page: ft.Page):
     return ft.View(
         "/datos_usuario",
         appbar=appbar,
-        controls=[conPrincipal]
-      
-            # ft.Column(
-            #     [
-            #         titulo,
-            #         campo_cedula,
-            #         boton_verificar,
-            #         snack  
-            #     ],
-            #     alignment=ft.MainAxisAlignment.CENTER,
-            #     horizontal_alignment=ft.CrossAxisAlignment.CENTER
-            # )
-        
+        controls=[
+             ft.Container(
+                content=conPrincipal,
+                # expand=True,                      # ocupa todo el alto disponible
+                alignment=ft.alignment.center,     # centra vertical y horizontal
+                padding=ft.padding.all(20)
+            )
+
+        ],
+        vertical_alignment=ft.MainAxisAlignment.CENTER,  # Centra verticalmente en la View
+        horizontal_alignment=ft.CrossAxisAlignment.CENTER,  # Centra horizontalmente en la View
     )

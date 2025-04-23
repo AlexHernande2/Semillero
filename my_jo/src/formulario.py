@@ -7,49 +7,60 @@ def formulario_usuario(page, ced ):
     print("Entró a formulario_usuario con cédula:", ced)
 
     page.title = "Registro de Usuario"
-    page.appbar = MiAppBar(page,"Registro de Usuario").obtener()
- 
+   
+    appbar = MiAppBar(
+        page, titulo="REGISTRO USUARIO",
+        bgcolor="#CC2B52",
+        actions=[],
+                           
+        titulo_size=28,                              # tamaño de fuente
+        titulo_weight=ft.FontWeight.BOLD,               #negrilla
+        mostrar_volver=True 
+    ).obtener()
 
-    titulo = ft.Text("REGISTRO USUARIO", 
-                     size=30,
-                     text_align=ft.TextAlign.CENTER, 
-                     width=page.width              
-    )
+
+
+
     #Se utiliza POO puesw con el fin de no repetir código
     mostrar_snack, snack = configurar_snackbar(page)
 
-       #Campos para la recolección de datos
-    cedula = ft.Text(f"Cédula: {ced}", size=16)
+   #Diccionario de sub-categorías
+    opciones_sub = {
+        "Comida": ["Restaurantes", "Cafés", "Street Food"],
+        "Deporte": ["Fútbol", "Baloncesto", "Natación"],
+        "Cultura y Arte": ["Museos", "Galerías", "Teatro"],
+        "Entretenimiento": ["Cine", "Conciertos", "Parques de diversiones"]
+    }
 
-    edad = ft.TextField(label="Edad")
-
-    sexo = ft.Dropdown(label="Sexo", options=[ft.dropdown.Option("M"), ft.dropdown.Option("F")])
-
-    intereses = ft.Dropdown(
-        label="intereses", options=
-            [
-                ft.dropdown.Option("Plaza de Bolívar"),
-                ft.dropdown.Option("Templo de Santo Domingo"), 
-                ft.dropdown.Option("Pozo de Donato"),
-                ft.dropdown.Option("Viva"),
-                ft.dropdown.Option("Unicentro")
-            ]
-        )
-    
-    nivelEstudio = ft.Dropdown(
-        label="Nivel de estudio", 
-        options=[
-            ft.dropdown.Option("Secundaria"),
-            ft.dropdown.Option("Pregrado"),
-            ft.dropdown.Option("Posgrado")
-        ]
+    #Campos para la recolección de datos
+    cedula = ft.Text(f"Cédula: {ced}",expand=True, size=16)
+    edad = ft.TextField(label="Edad",expand=True)
+    sexo = ft.Dropdown(
+        label="Sexo",
+        options=[ft.dropdown.Option("M"), ft.dropdown.Option("F")],
+        expand=True,
+       
     )
     
     tiempoDisponible = ft.TextField(
         label="Tiempo disponible en horas",
         keyboard_type=ft.KeyboardType.NUMBER,
-        hint_text="Entre 1 y 15"
+        hint_text="Entre 1 y 8"
     )
+
+    intereses = ft.Dropdown(
+        label="intereses", options=
+            [
+                ft.dropdown.Option(k) 
+                for k in opciones_sub.keys()
+            ]
+        )
+    
+    subInteres = ft.Dropdown(
+        label="SubInteres", 
+        options=[]
+    )
+
 
     presupuesto= ft.Dropdown(label="Presupuesto", options=[ft.dropdown.Option("Bajo"), ft.dropdown.Option("Medio"), ft.dropdown.Option("Alto")])
     
@@ -63,13 +74,24 @@ def formulario_usuario(page, ced ):
         ]
     )
 
+
+    def on_interes_cambiado(e):
+        sel = e.control.value
+        # Obtener las opciones apropiadas
+        lista = opciones_sub.get(sel, [])
+        # Reconstruir opciones de subInteres
+        subInteres.options = [ft.dropdown.Option(op) for op in lista]
+        subInteres.value = None        # limpiar selección previa
+        subInteres.update()            # refrescar componente
+
+    intereses.on_change = on_interes_cambiado
+
      # Configurar snackbar
     mostrar_snack, snack = configurar_snackbar(page)
-
     def guardar(evento):
 
         if not all([
-            edad.value, sexo.value, intereses.value, nivelEstudio.value,
+            edad.value, sexo.value, intereses.value, subInteres.value,
             tiempoDisponible.value, presupuesto.value, transporte.value
         ]):
             mostrar_snack("Debe ingresar todos los campos")
@@ -77,8 +99,8 @@ def formulario_usuario(page, ced ):
 
         try:
             edad_int = int(edad.value)
-            if not 16 <= edad_int <= 70:
-                mostrar_snack("Edad fuera de rango. Debes tener entre 16 y 70 años.")
+            if not 18 <= edad_int <= 70:
+                mostrar_snack("Edad fuera de rango. Debes tener entre 18 y 70 años.")
                 return
         except ValueError:
             mostrar_snack("Edad inválida. Ingresa un número.")
@@ -86,8 +108,8 @@ def formulario_usuario(page, ced ):
 
         try:
             tiempo_int = int(tiempoDisponible.value)
-            if not 1 <= tiempo_int <= 15:
-                mostrar_snack("Tiempo disponible fuera de rango. Debe ser entre 1 y 15 horas.")
+            if not 1 <= tiempo_int <= 8:
+                mostrar_snack("Tiempo disponible fuera de rango. Debe ser entre 1 y 8 horas.")
                 return
         except ValueError:
             mostrar_snack("Tiempo disponible inválido. Ingresa un número.")
@@ -98,7 +120,7 @@ def formulario_usuario(page, ced ):
             "sexo": sexo.value,
             "intereses": intereses.value.split(","),
             "medio_transporte": transporte.value,
-            "nivel de estudio": nivelEstudio.value,
+            "nivel de estudio": subInteres.value,
             "tiempo disponible": tiempo_int,
             "presupuesto": presupuesto.value
         }
@@ -111,32 +133,47 @@ def formulario_usuario(page, ced ):
     boton_guardar = ft.ElevatedButton(
         "Guardar",
         on_click=guardar,
-        style=ft.ButtonStyle(
-            padding=ft.padding.symmetric(horizontal=20, vertical=10)
-        ),
+        bgcolor="#CC2B52",      # color de fondo
+        color="white",          # color del texto
+        width=200,              # ancho fijo en píxeles
+        height=50               # (opcional) alto fijo
     )    
     
-  # Retornar la vista completa
+
+    conPrincipal = ft.Container(
+        expand=True,
+        padding=20,
+        border_radius=10,
+        gradient= ft.LinearGradient(
+            rotation=0.5,
+            begin=ft.alignment.top_left,
+            end=ft.alignment.bottom_right,
+             colors=[
+                "#c8b4f0",  # lila claro
+                "#f0c8f0",  # rosa pastel
+                "#c8f0ff",  # celeste pastel
+            ]
+        ),
+        content=ft.Column(
+            controls=[
+                cedula,
+                edad,
+                sexo,
+                intereses,
+                subInteres
+            ]
+        )
+
+    )
+
+
+
     return ft.View(
         f"/formulario_usuario?ced={ced}",
+        appbar=appbar,
         controls=[
-            ft.Column(
-                controls=[
-                    titulo,
-                    cedula,
-                    edad,
-                    sexo,
-                    intereses,
-                    nivelEstudio,
-                    tiempoDisponible,
-                    presupuesto,
-                    transporte,
-                    boton_guardar,
-                    snack  
-                ],
-                spacing=20,
-                scroll=ft.ScrollMode.AUTO,
-                expand=True
+            ft.Container(
+                content= conPrincipal
             )
         ]
     )
