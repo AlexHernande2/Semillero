@@ -34,13 +34,13 @@ class Route:
         
         self.page.update()
 
-    # def view_pop(self, view):
-    #     self.page.views.pop()
-    #     top_view = self.page.views[-1]
-    #     self.page.go(top_view.route)
     def view_pop(self, view):
-        if len(self.page.views) > 1:
-            self.page.views.pop()
-            top_view = self.page.views[-1]
-            self.page.route = top_view.route  # Actualiza la ruta
-            self.page.update()  # Fuerza la actualización
+        self.page.views.pop()
+        top_view = self.page.views[-1]
+        self.page.go(top_view.route)
+    # def view_pop(self, view):
+    #     if len(self.page.views) > 1:
+    #         self.page.views.pop()
+    #         top_view = self.page.views[-1]
+    #         self.page.route = top_view.route  # Actualiza la ruta
+    #         self.page.update()  # Fuerza la actualización

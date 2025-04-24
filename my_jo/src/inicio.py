@@ -5,11 +5,18 @@ from appBar import MiAppBar
 # from chbot import chatBOT
 
 def contInicial(page: ft.Page):
-    # Borra el contenido actual de la página
-    page.views.clear()
+   
+   
     page.title = "Sitios_de_Interes"
-    titulo = ft.Text("HOLA PAGINA Ndd", size=30)
-    
+   
+    appbar = MiAppBar (
+        page, 
+        titulo= "Tunja",
+        bgcolor=""
+    )
+
+
+
      # Función para navegar a la segunda página
     # def ir_a_pagina_chat(evento):
     #     chatBOT(page)  # Llama a la función para cargar la segunda página
@@ -92,35 +99,35 @@ def contInicial(page: ft.Page):
         on_tap=abrir_maps
     )   
     
-    page.views.append(
-        ft.View(
-           # "/inicio",  # Ruta de esta página
-            controls=[
-                ft.Column(
-                    [
-                        ft.Container(
-                            content= ft.Column(
-                                [
-                                    ft.Container(
-                                    content=titulo,
-                                    alignment=ft.alignment.center,
-                                    padding=ft.padding.only(top=20, bottom=50),
-                                    ),
-                                    gesture_detector,  # Imagen táctil 
-                                ],
-                                alignment=ft.MainAxisAlignment.CENTER,
-                                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                            )
-                        ),
-                        ft.Container(
-                            content=boton_chat,
-                            alignment=ft.alignment.center,
-                            padding=ft.padding.only(top=100)  
-                        ),
-                    ],
-                )
-            ],
-        )
-    )
+    # page.views.append(
+    #     ft.View(
+    #        # "/inicio",  # Ruta de esta página
+    #         controls=[
+    #             ft.Column(
+    #                 [
+    #                     ft.Container(
+    #                         content= ft.Column(
+    #                             [
+    #                                 ft.Container(
+    #                                 content=titulo,
+    #                                 alignment=ft.alignment.center,
+    #                                 padding=ft.padding.only(top=20, bottom=50),
+    #                                 ),
+    #                                 gesture_detector,  # Imagen táctil 
+    #                             ],
+    #                             alignment=ft.MainAxisAlignment.CENTER,
+    #                             horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+    #                         )
+    #                     ),
+    #                     ft.Container(
+    #                         content=boton_chat,
+    #                         alignment=ft.alignment.center,
+    #                         padding=ft.padding.only(top=100)  
+    #                     ),
+    #                 ],
+    #             )
+    #         ],
+    #     )
+    # )
     
-    page.update()
+    # page.update()

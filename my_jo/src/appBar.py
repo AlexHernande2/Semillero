@@ -1,5 +1,5 @@
 import flet as ft
-from router import Route
+
 
 class MiAppBar:
     def __init__(
@@ -15,7 +15,7 @@ class MiAppBar:
         mostrar_volver: bool = False   # Volver atrás
     ):
         self.page = page
-
+        
         volver_btn = ft.IconButton(
             icon=ft.icons.ARROW_BACK,
             icon_color=ft.colors.WHITE,
@@ -38,7 +38,10 @@ class MiAppBar:
         )
 
     def volver_atras(self, e):
-        self.page.view_pop() 
+        # self.route.view_pop(None) 
+        print("Click atrás")
+    
+
 
     def volver_inicio(self, e):
         # tu lógica de “volver al inicio”
