@@ -39,6 +39,8 @@ class MiAppBar:
 
     def volver_atras(self, e):
         # self.route.view_pop(None) 
+        #manejar con captura de ruta para los parametros
+        self.page.go("/")  # vuelve a la vista anterior en el historial
         print("Click atrás")
     
 
