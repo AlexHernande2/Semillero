@@ -3,22 +3,25 @@ from appBar import MiAppBar
 
 #Esta clase va ser para mostrar solo datos relacionados con Tunja
 def historia(page: ft.Page):
-    page.tittle = "Historia de Tunja"
+    page.title = "Historia de Tunja"
 
-    appbar = MiAppBar (
+    mi_appbar = MiAppBar (
         page, 
         titulo= "Historía de Tunja",
         bgcolor="#CC2B52",
-        actions=[],        
+        # actions=[],        
         titulo_size=28,                              # tamaño de fuente
         titulo_weight=ft.FontWeight.BOLD,               #negrilla
-        mostrar_volver=True 
+        mostrar_volver=True,
+        mostrar_menu= True
 
-    ).obtener()
+    )
+    appbar= mi_appbar.obtener()
 
     return ft.View(
         "/hTunja",
-        appbar=appbar
+        appbar=appbar,
+        drawer=page.drawer, 
         # controls=[
         #     ft.Container(
         #         content=gestos,

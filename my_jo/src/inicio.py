@@ -92,11 +92,11 @@ def contInicial(page: ft.Page):
     botones = ft.Row(
         controls=[
             ft.IconButton(
-                icon=ft.icons.ARROW_BACK,
+                icon=ft.Icons.ARROW_BACK,
                 on_click=lambda e: cambiar_imagen("anterior"),
             ),
             ft.IconButton(
-                icon=ft.icons.ARROW_FORWARD,
+                icon=ft.Icons.ARROW_FORWARD,
                 on_click=lambda e: cambiar_imagen("siguiente"),
             ),
         ],
@@ -109,7 +109,7 @@ def contInicial(page: ft.Page):
             cambiar_imagen("anterior" if e.delta_x > 0 else "siguiente")
 
     boton_chat = ft.FloatingActionButton(
-        icon=ft.icons.FORUM_OUTLINED,  # Ícono de chat
+        icon=ft.Icons.FORUM_OUTLINED,  # Ícono de chat
         bgcolor="#4CAF50",  # Color verde estilo WhatsApp
         shape=ft.CircleBorder(),
         width=60,
