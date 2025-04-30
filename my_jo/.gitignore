@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# Modelos entrenados
+C:/Users/edwin/OneDrive/Desktop/Semillero/label_encoders.pkl
+C:/Users/edwin/OneDrive/Desktop/Semillero/modelo_entrenado.pkl
+
 # Distribution / packaging
 .Python
 build/
