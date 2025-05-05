@@ -5,7 +5,8 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.multioutput import MultiOutputClassifier
 from sklearn.metrics import accuracy_score
-df = pd.read_csv('C:/Users/edwin/OneDrive/Desktop/Semillero/my_jo/src/Otro.csv', encoding='latin1', delimiter=';')
+#C:\Users\edwin\OneDrive - Universidad de Boyacá\Escritorio\Semillero\my_jo\src\Otro.csv
+df = pd.read_csv('C:/Users/edwin/OneDrive - Universidad de Boyacá/Escritorio/Semillero/my_jo/src/Otro.csv', encoding='latin1', delimiter=';')
 
 #Corregir posibles problemas en los nombres de columnas
 df.columns = df.columns.str.strip()  # Elimina espacios ocultos

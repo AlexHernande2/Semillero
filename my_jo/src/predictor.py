@@ -1,4 +1,18 @@
 # predictor.py
+import os, gdown, joblib, pandas as pd
+
+#https://drive.google.com/file/d/1-Z672EhQKFOOPrrgQ9ug6CqxV7A86zPQ/view?usp=drive_link
+# Descarga automática
+def descargar_si_no_existe(id_drive, nombre):
+    if not os.path.exists(nombre):
+        gdown.download(f"https://drive.google.com/uc?id={id_drive}", nombre, quiet=False)
+
+ID_MODEL = "1-Z672EhQKFOOPrrgQ9ug6CqxV7A86zPQ"
+ID_LE    = "1j3Jn2JWjWp-85dYLa-7RKH4aP6Dbcv-Y"
+descargar_si_no_existe(ID_MODEL, "modelo_entrenado.pkl")
+descargar_si_no_existe(ID_LE,    "label_encoders.pkl")
+
+# predictor.py
 import json
 import joblib
 import pandas as pd

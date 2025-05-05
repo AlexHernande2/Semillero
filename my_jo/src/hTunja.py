@@ -17,6 +17,10 @@ def historia(page: ft.Page):
 
     )
     appbar= mi_appbar.obtener()
+    
+    
+
+
 
     return ft.View(
         "/hTunja",

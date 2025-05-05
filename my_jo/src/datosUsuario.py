@@ -33,6 +33,7 @@ def datosUsuario(page: ft.Page):
         if usuario_existe(ced):
             page.go("/inicio")
             print("hola")
+        
         else:
             page.go(f"/formulario_usuario?ced={ced}")
 

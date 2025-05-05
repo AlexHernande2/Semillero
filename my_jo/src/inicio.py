@@ -2,7 +2,7 @@ import flet as ft
 import threading
 import time
 from appBar import MiAppBar
-# from chbot import chatBOT
+from chbot import chatBOT
 
 def contInicial(page: ft.Page):
    
@@ -108,6 +108,17 @@ def contInicial(page: ft.Page):
         if abs(e.delta_x) > 10:  # Sensibilidad del gesto
             cambiar_imagen("anterior" if e.delta_x > 0 else "siguiente")
 
+
+    def irchat(evento):
+        page = evento.page
+        if page.session.contains_key("cedula"):
+            page.go("/chatbot")
+        else:
+            # Mostrar error si no hay usuario logueado
+            page.snack_bar = ft.SnackBar(ft.Text("Primero debes iniciar sesión"))
+            page.snack_bar.open = True
+            page.update()
+
     boton_chat = ft.FloatingActionButton(
         icon=ft.Icons.FORUM_OUTLINED,  # Ícono de chat
         bgcolor="#4CAF50",  # Color verde estilo WhatsApp
@@ -115,8 +126,9 @@ def contInicial(page: ft.Page):
         width=60,
         height=60,
         mini=True,
-        tooltip="Chat de asistencia"
-        # on_click=lambda e: chatBOT(page)  # Asegúrate de importar la función
+        tooltip="Chat de asistencia",
+        on_click=irchat
+        # on_click=lambda e: chatBOT(page) 
     )
 
     def ir_Hist_Tunja (e):
@@ -162,39 +174,3 @@ def contInicial(page: ft.Page):
     )
 
    
-
-
-    
-    #  # Función para navegar a la segunda página
-    # # def ir_a_pagina_chat(evento):
-    # #     chatBOT(page)  # Llama a la función para cargar la segunda página
-    #  # Botón
-    # boton_chat = ft.ElevatedButton(
-    #     "Chat",
-    #     #on_click=ir_a_pagina_chat,
-    #     style=ft.ButtonStyle(
-    #         padding=ft.padding.symmetric(horizontal=20, vertical=10)
-    #     ),
-    # )
-     
-  
-    
-    # def abrir_maps(e):
-    #     sitio = sitios_tunja[indice_actual.current]
-    #     page.launch_url(sitio["maps_url"])
-
-
-
-    
-    
-    # # Inicia el temporizador en un hilo separado
-    # threading.Thread(target=cambio_automatico, daemon=True).start()
-    
-    # # GestureDetector para detectar gestos táctiles
-    # gesture_detector = ft.GestureDetector(
-    #         content=imagen_mostrada,
-    #     on_horizontal_drag_update=lambda e: cambiar_imagen(
-    #         "anterior" if e.primary_delta > 0 else "siguiente"  
-    #     ),
-    #     on_tap=abrir_maps
-    # ) 

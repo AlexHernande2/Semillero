@@ -22,10 +22,10 @@ def formulario_usuario(page, ced ):
 
    #Diccionario de sub-categorías
     opciones_sub = {
-        "Comida": ["Restaurantes", "Cafés", "Street Food"],
-        "Deporte": ["Fútbol", "Baloncesto", "Natación"],
-        "Cultura y Arte": ["Museos", "Galerías", "Teatro"],
-        "Entretenimiento": ["Cine", "Conciertos", "Parques de diversiones"]
+        "Comida": ["China", "Rapida", "Parrilla"],
+        "Deporte": ["Parques", "Polideportivos"],
+        "Cultura y Arte": ["Iglesias", "Espacios Culturales", "Museos y Casas Museo"],
+        "Entretenimiento": ["Bares y Discotecas", "Centros Comerciales y Ocio"]
     }
 
     #Campos para la recolección de datos
