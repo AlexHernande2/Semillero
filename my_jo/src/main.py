@@ -11,9 +11,9 @@ def main(page: ft.Page):
 
     # Inicializar el enrutador
     Route(page)
-  
+     
     page.go('/') 
 
 ft.app(main, view=ft.WEB_BROWSER)
  
-# 
+#     
