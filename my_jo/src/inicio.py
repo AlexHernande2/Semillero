@@ -8,16 +8,17 @@ def contInicial(page: ft.Page):
    
     page.title = "Sitios_de_Interes"
    
-    appbar = MiAppBar (
+    mi_appbar = MiAppBar (
         page, 
         titulo= "Tunja",
-        bgcolor="#CC2B52",
-        actions=[],        
+        bgcolor="#CC2B52",      
         titulo_size=28,                              # tamaño de fuente
         titulo_weight=ft.FontWeight.BOLD,               #negrilla
-        mostrar_volver=True 
+        mostrar_volver=True, 
+        mostrar_menu=True
 
-    ).obtener()
+    )
+    appbar= mi_appbar.obtener()
 
     def abrir_maps(e):
         sitio_actual = sitios_tunja[indice_actual.current]  # Acceder al índice actual
@@ -33,13 +34,23 @@ def contInicial(page: ft.Page):
         },
         {
             "nombre": "Puente de Boyacá",
-            "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVOjL3yi2PDIWACuL_kKsR6e78GCqQsTtsGw&s",
+            "imagen": "https://media.cnn.com/api/v1/images/stellar/prod/cnne-1243888-colombia-independence-boyaca-anniversary.jpg?q=w_1110,c_fill",
             "maps_url": "https://maps.app.goo.gl/GF12wJp3pgXAfBQj9"
         },
         {
-            "nombre": "Catedral Basílica Metropolitana Santiago de Tunja",
-            "imagen": "https://apartamento-frente-al-centro-comercial-viva.hoteles-en-boyaca.com/data/Images/OriginalPhoto/14771/1477160/1477160059/image-tunja-4.JPEG",
-            "maps_url": "https://maps.app.goo.gl/WDr6vQfc1q23KZwu7"
+            "nombre": "Delicias Boyacenses",
+            "imagen": "https://mercadobecampo.com/cdn/shop/products/arepaboyacense.jpg?v=1626360383",
+            "maps_url": "https://maps.app.goo.gl/VEV5zWnaus24Z758A"
+        },
+        {
+            "nombre": "Centro Comercial Viva",
+            "imagen": "https://ccviva.com/sites/default/files/2024-08/tunja-fachada.jpg",
+            "mapa_url": "https://maps.app.goo.gl/q3Qn9Two65DmbdW38"
+        },
+        {
+            "nombre": "Paredón de los Mártires",
+            "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/JAVIER107.jpg/500px-JAVIER107.jpg",
+            "mapa_url": "https://maps.app.goo.gl/hLrkA2rfbEVjS6at7"
         }
     ]
     # Lógica del carrusel
@@ -137,6 +148,7 @@ def contInicial(page: ft.Page):
 
     btn_H_Tj = ft.ElevatedButton(
         "Historia de Tunja",
+        margin= ft.margin.only(top=20),
         bgcolor="#CC2B52",      # color de fondo
         color="white",          # color del texto
         width=200,              # ancho fijo en píxeles
@@ -164,6 +176,7 @@ def contInicial(page: ft.Page):
     return ft.View(
         "/inicio",
         appbar=appbar,
+        drawer=page.drawer,
         controls=[
             ft.Container(
                 content=gestos,

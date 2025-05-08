@@ -5,16 +5,10 @@ def home_view(page: ft.Page):
     def ir_a_pagina_datUsuario(evento):
         page.go("/datos_usuario")
     
-    # titulo = ft.Text("Cultura de Tunja",
-    #                  size=30,
-    #                  text_align=ft.TextAlign.CENTER, 
-    #                  width=page.width)
-    
     appbar = MiAppBar(
         page, titulo="Cultura de Tunja",
         bgcolor="#CC2B52",
         actions=[],
-                           
         titulo_size=28,                              # tamaño de fuente
         titulo_weight=ft.FontWeight.BOLD               #negrilla
     ).obtener()
@@ -67,4 +61,4 @@ def home_view(page: ft.Page):
                 content=contenido,
                 expand=True,
                 alignment=ft.alignment.center)
-        ])
+        ])   

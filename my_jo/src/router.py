@@ -33,7 +33,7 @@ class Route:
         return home_view(self.page)
 
     def route_change(self, event=None):
-        self.page.views.clear()
+        # self.page.views.clear()
         print("Ruta actual:", self.page.route)
 
         # Manejar rutas con parámetros (por ejemplo, formulario_usuario?ced=123)
@@ -58,10 +58,17 @@ class Route:
 
         self.page.update()
 
+    # def view_pop(self, view):
+    #     self.page.views.pop()
+    #     top_view = self.page.views[-1]
+    #     self.page.go(top_view.route)
     def view_pop(self, view):
-        self.page.views.pop()
-        top_view = self.page.views[-1]
-        self.page.go(top_view.route)
+       
+        if len(self.page.views) > 1:
+            self.page.views.pop()
+            top_view = self.page.views[-1]
+            self.page.route = top_view.route
+            self.page.update()
 
 
     def error_404(self):

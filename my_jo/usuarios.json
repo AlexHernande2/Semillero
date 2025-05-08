@@ -5,5 +5,26 @@
         "Tiempo disponible": 2,
         "Interes": "Comida",
         "subInteres": "China"
+    },
+    "1057544033": {
+        "Edad": 21,
+        "Sexo": "M",
+        "Tiempo disponible": 2,
+        "Interes": "Cultura y Arte",
+        "subInteres": "Iglesias"
+    },
+    "1002369854": {
+        "Edad": 34,
+        "Sexo": "F",
+        "Tiempo disponible": 8,
+        "Interes": "Deporte",
+        "subInteres": "Polideportivos"
+    },
+    "100236981": {
+        "Edad": 18,
+        "Sexo": "F",
+        "Tiempo disponible": 2,
+        "Interes": "Deporte",
+        "subInteres": "Parques"
     }
 }

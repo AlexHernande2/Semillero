@@ -38,7 +38,7 @@ class MiAppBar:
             self.page.drawer = ft.NavigationDrawer(
                 controls=[
                     ft.Container(
-                        content=ft.Text("Menú principal", size=20, weight=ft.FontWeight.BOLD),
+                        content=ft.Text("Menú principal", size=20, weight=ft.FontWeight.BOLD), #Titulo del appbar
                         padding=10
                     ),
                     ft.Divider(),
@@ -74,7 +74,8 @@ class MiAppBar:
             leading=self.volver_btn,
             actions=(
                 [self.menu_btn] if self.menu_btn else []
-            ) + (actions or [])  # Botón de menú a la derecha (si existe,
+            ) + (actions or []), # Botón de menú a la derecha (si existe,
+            automatically_imply_leading=False  # <— desactiva el back por defecto
             
         )
 
@@ -85,15 +86,16 @@ class MiAppBar:
     
 
     def volver_atras(self, e):
-        # self.route.view_pop(None) 
-        #manejar con captura de ruta para los parametros
-        self.page.go("/")  # vuelve a la vista anterior en el historial
-        print("Click atrás")
+        if len(self.page.views) > 1:
+            # Obtener la ruta de la vista anterior
+            previous_route = self.page.views[-2].route  # Índice -2: vista anterior
+            self.page.go(previous_route)  # Navegar usando el sistema de rutas de Flet
+            print("click volver")
 
     def volver_inicio(self, e):
-        # tu lógica de “volver al inicio”
-        from inicio import contInicial
-        contInicial(self.page)
+    
+        self.page.session.clear()
+        self.page.go("/inicio")
 
     def cerrar_sesion(self, e):
         # tu lógica de logout

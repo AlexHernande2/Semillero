@@ -45,6 +45,11 @@ def historia(page: ft.Page):
             "imagen": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/07/9d/b1/83/casa-del-fundador-gonzalo.jpg?w=1200&h=-1&s=1",
             "maps": "https://maps.app.goo.gl/NKSiHmQZYBshi7pr5"
         },
+        "3":{
+            "texto": "pRUEBA 3",
+            "imagen": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/07/9d/b1/83/casa-del-fundador-gonzalo.jpg?w=1200&h=-1&s=1",
+            "maps": "https://maps.app.goo.gl/NKSiHmQZYBshi7pr5"
+        }
         # Añadir más opciones aquí...
     }
     
