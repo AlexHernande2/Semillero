@@ -63,33 +63,16 @@ def formulario_usuario(page, ced ):
         width=float("inf")
     )
 
-    # def on_interes_cambiado(e):
-    #     sel = e.control.value                     # valor seleccionado en el dropdown de intereses
-    #     lista = opciones_sub.get(sel, [])         # busca la lista correspondiente en el diccionario
-
-    #     # 1) Limpia todo (valor y opciones antiguas)
-    #     subInteres.value = None
-    #     subInteres.options = []
-    #     subInteres.update()
-
-    #     # 2) Carga las nuevas opciones
-    #     subInteres.options = [ft.dropdown.Option(op) for op in lista]
-    #     subInteres.update()
-
-    #     # 3) Fuerza un refresco completo de la página
-    #     page.update()
-
     def on_interes_cambiado(e):
-        sel = e.control.value
-        lista = opciones_sub.get(sel, [])
+        sel = e.control.value                     # Valor seleccionado en el dropdown de intereses
+        lista = opciones_sub.get(sel, [])         # Obtiene la lista de sub-intereses
 
-        # 1) Limpia el valor seleccionado
+        # 1) Limpiar el valor y cargar nuevas opciones directamente
         subInteres.value = None
-
-        # 2) Recarga las opciones según el nuevo interés
         subInteres.options = [ft.dropdown.Option(op) for op in lista]
 
-        # 3) Fuerza el refresco de toda la página (incluyendo el dropdown)
+        # 2) Actualizar el control y la página
+        subInteres.update()
         page.update()
 
     intereses.on_change = on_interes_cambiado

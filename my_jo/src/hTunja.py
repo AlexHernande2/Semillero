@@ -34,10 +34,11 @@ def historia(page: ft.Page):
     )
 
     # Diccionario centralizado de opciones
+    #imagenes\inicial.png
     opciones = {
         "1": {
             "texto": "Tunja fue fundada por Gonzalo Suárez Rendón en 6 de agosto 1539",
-            "imagen": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/07/9d/b1/83/casa-del-fundador-gonzalo.jpg?w=1200&h=-1&s=1",
+            "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhy3fqLItgkrSi1lQsNbdnjhDUiQ6O_FLGgG_lwszHFRglGXn8IfY4Ke5hAKbGBjP3HL4&usqp=CAU",
             "maps": "https://maps.app.goo.gl/NKSiHmQZYBshi7pr5"
         },
         "2": {
@@ -46,9 +47,9 @@ def historia(page: ft.Page):
             "maps": "https://maps.app.goo.gl/NKSiHmQZYBshi7pr5"
         },
         "3":{
-            "texto": "pRUEBA 3",
-            "imagen": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/07/9d/b1/83/casa-del-fundador-gonzalo.jpg?w=1200&h=-1&s=1",
-            "maps": "https://maps.app.goo.gl/NKSiHmQZYBshi7pr5"
+            "texto": "El lugar es más visitado en Tunja es la iglesia catedralicia de Tunja, de estilo gótico y neoclásico, que es la más antigua del país (1562)",
+            "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwBgyNhQuExnNi16_okRWz0kv2hmbTJjhh-w&s",
+            "maps": "https://maps.app.goo.gl/Be57YXbLH5F5eJ6d7"
         }
         # Añadir más opciones aquí...
     }
@@ -73,6 +74,7 @@ def historia(page: ft.Page):
     # Función que procesa los mensajes
     def procesar_mensaje(mensaje):
         return opciones.get(mensaje, {}).get("texto", "Opción inválida")
+       
 
           
     
@@ -81,11 +83,7 @@ def historia(page: ft.Page):
         if not datos:
             return None
         componentes = []
-        # # Texto descriptivo
-        # if "texto" in datos:
-        #     componentes.append(ft.Text(datos["texto"], size=18))
         
-    
       # Imagen clickeable con GestureDetector
         if "imagen" in datos and "maps" in datos:
             componentes.append(
@@ -163,6 +161,21 @@ def historia(page: ft.Page):
             
             page.update()
             chat_mensajes.scroll_to(offset=-1, duration=500)
+
+            if respuesta == "Opción inválida":
+                chat_mensajes.controls.append(
+                    ft.Container(
+                        content=ft.Text(f"Bot: {mensaje_inicial}", size=18, color="black"),
+                        bgcolor="#E8F5E9",
+                        padding=10,
+                        border_radius=10,
+                        margin=5,
+                        alignment=ft.alignment.center_left
+                    )
+                )
+                page.update()
+                chat_mensajes.scroll_to(offset=-1, duration=500)
+
 
      # Botón de enviar
     boton_enviar = ft.ElevatedButton("Enviar", on_click=enviar_mensaje)

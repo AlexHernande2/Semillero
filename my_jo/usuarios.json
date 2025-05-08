@@ -26,5 +26,12 @@
         "Tiempo disponible": 2,
         "Interes": "Deporte",
         "subInteres": "Parques"
+    },
+    "1051064380": {
+        "Edad": 21,
+        "Sexo": "M",
+        "Tiempo disponible": 5,
+        "Interes": "Comida",
+        "subInteres": "Parrilla"
     }
 }

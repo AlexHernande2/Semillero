@@ -146,14 +146,18 @@ def contInicial(page: ft.Page):
         page.go("/hTunja")
         print("hola")   
 
-    btn_H_Tj = ft.ElevatedButton(
-        "Historia de Tunja",
-        margin= ft.margin.only(top=20),
-        bgcolor="#CC2B52",      # color de fondo
-        color="white",          # color del texto
-        width=200,              # ancho fijo en píxeles
-        height=50,             # (opcional) alto fijo
-        on_click= ir_Hist_Tunja
+    btn_H_Tj = ft.Container(
+        margin=ft.margin.only(top=20),
+        content=ft.ElevatedButton(
+            "Historia de Tunja",
+            
+            bgcolor="#CC2B52",      # color de fondo
+            color="white",          # color del texto
+            width=200,              # ancho fijo en píxeles
+            height=50,             # (opcional) alto fijo
+            on_click= ir_Hist_Tunja
+
+        )
     )    
     
 
